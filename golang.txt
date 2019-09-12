@@ -1,0 +1,7 @@
+Assignment: 1. Bubble sort using go lang
+2. WAP in GOLANG to print everything(apne baare mein) in main and after main fxn it gives "thanks for learning golang"
+3. WAP to print a string in upper and lower and check for alnumeric.
+Study:
+1. Make function padhna hai
+2. fxn closure
+3.tour.golang.org
